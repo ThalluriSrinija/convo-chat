@@ -1,0 +1,104 @@
+/* ============================================================
+   UserCard — registered user item in the All Users list
+   ============================================================ */
+
+.user-card {
+  display: flex;
+  align-items: center;
+  gap: 0.875rem;
+  padding: 0.875rem 1.25rem;
+  border-bottom: 1px solid var(--color-border);
+  background: transparent;
+  transition: background-color var(--transition-fast);
+  cursor: default;
+}
+
+.user-card:last-child {
+  border-bottom: none;
+}
+
+.user-card:hover {
+  background-color: var(--color-bg-elevated);
+}
+
+/* Avatar */
+.user-card__avatar {
+  width: 44px;
+  height: 44px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1rem;
+  font-weight: 700;
+  color: #fff;
+  flex-shrink: 0;
+  user-select: none;
+  text-transform: uppercase;
+}
+
+/* Info */
+.user-card__info {
+  flex: 1;
+  min-width: 0;
+}
+
+.user-card__name {
+  font-size: var(--font-size-sm);
+  font-weight: 600;
+  color: var(--color-text-primary);
+  margin: 0 0 0.2rem;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.user-card__identifier {
+  font-size: var(--font-size-xs);
+  color: var(--color-text-muted);
+  margin: 0;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+/* Chat button */
+.user-card__chat-btn {
+  display: flex;
+  align-items: center;
+  gap: 0.35rem;
+  padding: 0.375rem 0.875rem;
+  border-radius: var(--radius-sm);
+  border: 1px solid var(--color-primary);
+  background: transparent;
+  color: var(--color-primary-light);
+  font-size: var(--font-size-xs);
+  font-weight: 600;
+  cursor: pointer;
+  white-space: nowrap;
+  flex-shrink: 0;
+  transition: background-color var(--transition-fast), color var(--transition-fast), box-shadow var(--transition-fast);
+  line-height: 1;
+}
+
+.user-card__chat-btn:hover {
+  background-color: rgba(108, 99, 255, 0.12);
+  box-shadow: 0 0 0 2px rgba(108, 99, 255, 0.2);
+}
+
+.user-card__chat-btn:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+
+.user-card__chat-btn--loading {
+  pointer-events: none;
+}
+
+/* Inline error beneath name */
+.user-card__error {
+  font-size: var(--font-size-xs);
+  color: var(--color-error);
+  margin: 0.2rem 0 0;
+  line-height: 1.4;
+}

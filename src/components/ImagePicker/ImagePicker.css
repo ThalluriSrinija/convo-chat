@@ -1,0 +1,263 @@
+/* ============================================================
+   ImagePicker — reusable image selection + preview component
+   ============================================================ */
+
+/* ── Attach trigger button ───────────────────────────────── */
+
+.img-picker__trigger {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 38px;
+  height: 38px;
+  border-radius: var(--radius-sm);
+  border: 1px solid var(--color-border);
+  background: transparent;
+  color: var(--color-text-muted);
+  cursor: pointer;
+  flex-shrink: 0;
+  transition:
+    color var(--transition-fast),
+    background-color var(--transition-fast),
+    border-color var(--transition-fast);
+}
+
+.img-picker__trigger:hover:not(:disabled) {
+  color: var(--color-primary-light);
+  background-color: rgba(108, 99, 255, 0.08);
+  border-color: rgba(108, 99, 255, 0.35);
+}
+
+.img-picker__trigger:disabled {
+  opacity: 0.45;
+  cursor: not-allowed;
+}
+
+/* Active state — image already selected */
+.img-picker__trigger--active {
+  color: var(--color-primary-light);
+  background-color: rgba(108, 99, 255, 0.1);
+  border-color: var(--color-primary);
+}
+
+/* Hidden file input */
+.img-picker__input {
+  display: none;
+}
+
+/* ── Preview bar ─────────────────────────────────────────── */
+
+.img-picker__preview-bar {
+  display: flex;
+  align-items: flex-end;
+  gap: 0.75rem;
+  padding: 0.625rem 0.875rem;
+  background: var(--color-bg-elevated);
+  border-top: 1px solid var(--color-border);
+  border-bottom: 1px solid var(--color-border);
+  animation: previewSlideIn 0.2s ease both;
+}
+
+@keyframes previewSlideIn {
+  from { opacity: 0; transform: translateY(6px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+/* ── Thumbnail ───────────────────────────────────────────── */
+
+.img-picker__thumb-wrap {
+  position: relative;
+  flex-shrink: 0;
+}
+
+.img-picker__thumb {
+  width: 72px;
+  height: 72px;
+  border-radius: var(--radius-md);
+  object-fit: cover;
+  display: block;
+  border: 1px solid var(--color-border);
+  background: var(--color-bg-card);
+}
+
+/* Remove (×) button overlaid on thumbnail */
+.img-picker__remove {
+  position: absolute;
+  top: -7px;
+  right: -7px;
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  background: var(--color-bg-card);
+  border: 1px solid var(--color-border);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  color: var(--color-text-secondary);
+  padding: 0;
+  transition:
+    background-color var(--transition-fast),
+    color var(--transition-fast),
+    border-color var(--transition-fast);
+  z-index: 1;
+}
+
+.img-picker__remove:hover {
+  background-color: rgba(248, 113, 113, 0.15);
+  color: var(--color-error);
+  border-color: rgba(248, 113, 113, 0.35);
+}
+
+/* ── File meta (name + size) ─────────────────────────────── */
+
+.img-picker__meta {
+  flex: 1;
+  min-width: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 0.2rem;
+}
+
+.img-picker__filename {
+  font-size: var(--font-size-xs);
+  font-weight: 600;
+  color: var(--color-text-primary);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  margin: 0;
+}
+
+.img-picker__filesize {
+  font-size: var(--font-size-xs);
+  color: var(--color-text-muted);
+  margin: 0;
+}
+
+.img-picker__send-hint {
+  font-size: var(--font-size-xs);
+  color: var(--color-text-muted);
+  margin: 0.35rem 0 0;
+  font-style: italic;
+}
+
+/* ── View type toggle pills ──────────────────────────────── */
+
+.img-picker__viewtype-row {
+  display: flex;
+  align-items: center;
+  gap: 0.35rem;
+  margin-top: 0.25rem;
+}
+
+.img-picker__viewtype-btn {
+  padding: 0.2rem 0.5rem;
+  border-radius: 9999px;
+  font-size: 0.68rem;
+  font-weight: 500;
+  border: 1px solid var(--color-border);
+  background: var(--color-bg-card);
+  color: var(--color-text-secondary);
+  cursor: pointer;
+  transition: all var(--transition-fast);
+}
+
+.img-picker__viewtype-btn:hover {
+  border-color: rgba(108, 99, 255, 0.4);
+  color: var(--color-text-primary);
+}
+
+.img-picker__viewtype-btn.active {
+  background: rgba(108, 99, 255, 0.15);
+  border-color: var(--color-primary);
+  color: var(--color-primary-light);
+  font-weight: 600;
+}
+
+/* ── Upload progress bar ─────────────────────────────────── */
+
+.img-picker__progress-wrap {
+  margin-top: 0.4rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.25rem;
+}
+
+.img-picker__progress-track {
+  width: 100%;
+  height: 4px;
+  border-radius: 2px;
+  background: var(--color-border);
+  overflow: hidden;
+}
+
+.img-picker__progress-fill {
+  height: 100%;
+  border-radius: 2px;
+  background: linear-gradient(90deg, var(--color-primary), #a78bfa);
+  transition: width 0.15s ease;
+}
+
+.img-picker__progress-label {
+  font-size: 0.6rem;
+  color: var(--color-text-muted);
+  margin: 0;
+}
+
+/* ── Error message ───────────────────────────────────────── */
+
+.img-picker__error {
+  display: flex;
+  align-items: flex-start;
+  gap: 0.4rem;
+  padding: 0.5rem 0.875rem;
+  background: rgba(248, 113, 113, 0.08);
+  border-top: 1px solid rgba(248, 113, 113, 0.2);
+  font-size: var(--font-size-xs);
+  color: var(--color-error);
+  animation: previewSlideIn 0.2s ease both;
+}
+
+.img-picker__error-icon {
+  flex-shrink: 0;
+  margin-top: 0.05rem;
+}
+
+.img-picker__error-dismiss {
+  margin-left: auto;
+  background: none;
+  border: none;
+  padding: 0;
+  cursor: pointer;
+  color: var(--color-error);
+  opacity: 0.7;
+  flex-shrink: 0;
+  display: flex;
+  align-items: center;
+  transition: opacity var(--transition-fast);
+}
+
+.img-picker__error-dismiss:hover {
+  opacity: 1;
+}
+
+/* ── Loading overlay on thumb (reading file) ─────────────── */
+
+.img-picker__thumb-loading {
+  width: 72px;
+  height: 72px;
+  border-radius: var(--radius-md);
+  background: var(--color-bg-elevated);
+  border: 1px solid var(--color-border);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  animation: skeletonPulse 1.2s ease infinite;
+}
+
+@keyframes skeletonPulse {
+  0%, 100% { opacity: 1; }
+  50%       { opacity: 0.45; }
+}

@@ -1,0 +1,5 @@
+// Services contain business logic, called by controllers.
+// They interact with Mongoose models and other services.
+// Keeps controllers thin and logic testable.
+//
+// Example: AuthService.register(userData) → hashes password, saves User, returns token

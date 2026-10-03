@@ -1,0 +1,76 @@
+/* ============================================================
+   404 Not Found Page
+   ============================================================ */
+
+.notfound-wrapper {
+  position: relative;
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+  background-color: var(--color-bg);
+  padding: 2rem;
+}
+
+.notfound-blob {
+  position: absolute;
+  border-radius: 50%;
+  filter: blur(80px);
+  opacity: 0.2;
+  pointer-events: none;
+}
+
+.notfound-blob--1 {
+  width: 460px;
+  height: 460px;
+  background: radial-gradient(circle, #6c63ff 0%, transparent 70%);
+  top: -100px;
+  left: -100px;
+}
+
+.notfound-blob--2 {
+  width: 340px;
+  height: 340px;
+  background: radial-gradient(circle, #a78bfa 0%, transparent 70%);
+  bottom: -80px;
+  right: -80px;
+}
+
+.notfound-card {
+  position: relative;
+  z-index: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  gap: 1rem;
+  animation: cardReveal 0.5s ease both;
+}
+
+/* Large 404 code */
+.notfound-code {
+  font-size: clamp(5rem, 20vw, 9rem);
+  font-weight: 800;
+  letter-spacing: -0.04em;
+  line-height: 1;
+  background: linear-gradient(135deg, var(--color-primary-light) 30%, #a78bfa);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  user-select: none;
+}
+
+.notfound-title {
+  font-size: var(--font-size-2xl);
+  font-weight: 600;
+  color: var(--color-text-primary);
+  margin: 0;
+}
+
+.notfound-subtitle {
+  font-size: var(--font-size-base);
+  color: var(--color-text-secondary);
+  max-width: 360px;
+  margin: 0;
+}

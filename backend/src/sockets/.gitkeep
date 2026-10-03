@@ -1,0 +1,5 @@
+// Socket.IO event handlers will be added in Module 20.
+// Structure:
+//   sockets/index.js        — initialises Socket.IO, attaches namespace handlers
+//   sockets/chat.js         — 'message:send', 'message:received' events
+//   sockets/presence.js     — 'user:online', 'user:offline' events
